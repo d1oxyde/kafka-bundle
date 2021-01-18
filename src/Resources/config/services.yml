@@ -1,0 +1,14 @@
+services:
+  kafka.locator:
+    class: Symfony\Component\DependencyInjection\ServiceLocator
+    arguments:
+      - []
+    tags: ['container.service_locator']
+
+  kafka.consume_command:
+    class: D1oxyde\KafkaBundle\Command\ConsumeCommand
+    arguments:
+      - '@kafka.locator'
+      - 'kafka.%s.consumer'
+    tags:
+      - { name: 'console.command' }
